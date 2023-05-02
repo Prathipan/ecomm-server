@@ -65,8 +65,8 @@ router.post("/checkout/:id", async (req, res) => {
         line_items,
         customer : customer.id,
         mode: "payment",
-        // success_url: `https://shopzone-client.netlify.app/orderSuccess`,
-        // cancel_url: `https://shopzone-client.netlify.app/checkout-failure`,
+        success_url: `https://shopzone-client.netlify.app/orderSuccess`,
+        cancel_url: `https://shopzone-client.netlify.app/checkout-failure`,
       });
       if (!session) throw Error("payment failed");
     
