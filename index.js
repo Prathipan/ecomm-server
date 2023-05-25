@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URL).then(()=>{
 app.use(cors())
 app.use(express.json());
 app.use("/api/auth",authRouter);
-app.use("/api/user",userRouter);
+app.use("/api/users",userRouter);
 app.use("/api/products",productRouter)
 app.use("/api/cart",cartRouter)
 app.use("/api/order",orderRouter)

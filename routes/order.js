@@ -133,7 +133,32 @@ const createOrder = async(customer,intent,res) => {
   }
 }
 
-router.get("/get-orders/:id", async (req, res) => {
+router.put("/:id",verifyTokenAndAdmin,async(req,res) => {
+  const orderId = req.params.id;
+  try {
+    const updatedOrder = await Order.findByIdAndUpdate({_id : orderId},
+      {
+        $set: req.body,
+      },
+      { new: true }
+    );
+    res.status(200).json(updatedOrder)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+
+})
+
+router.get("/all-orders",verifyTokenAndAdmin,async(req,res) => {
+  try {
+    const orders = await Order.find();
+    res.status(200).json(orders);
+  } catch (error) {
+    res.status(500).json(error)
+  }
+})
+
+router.get("/get-order/:id", async (req, res) => {
   const userId = req.params.id;
   try {
     const orders = await Order.find({ userId });
