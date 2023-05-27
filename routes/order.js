@@ -158,7 +158,7 @@ router.get("/all-orders",verifyTokenAndAdmin,async(req,res) => {
   }
 })
 
-router.get("/get-order/:id", async (req, res) => {
+router.get("/get-orders/:id", async (req, res) => {
   const userId = req.params.id;
   try {
     const orders = await Order.find({ userId });
